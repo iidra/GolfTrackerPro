@@ -4,6 +4,7 @@ import GolfMap from './components/Map/GolfMap';
 import ActiveRound from './components/RoundControls/ActiveRound';
 import RoundHistory from './components/History/RoundHistory';
 import CourseSetup from './components/Setup/CourseSetup';
+import CourseSearch from './pages/CourseSearch';
 import { useGolfStore } from './store/useGolfStore';
 import { useState } from 'react';
 
@@ -14,7 +15,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-100">
-        <nav className="bg-white shadow-md">
+        <nav className="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex justify-between h-16">
               <div className="flex items-center">
@@ -52,6 +53,14 @@ function App() {
                 >
                   <History className="w-5 h-5" />
                   <span>History</span>
+                </Link>
+
+                <Link
+                  to="/courses"
+                  className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-gray-100"
+                >
+                  <LandPlot className="w-5 h-5" />
+                  <span>Find Courses</span>
                 </Link>
 
                 {!currentRound && (
@@ -92,6 +101,17 @@ function App() {
                 </div>
               </Link>
 
+              <Link
+                to="/courses"
+                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <div className="flex items-center space-x-2">
+                  <LandPlot className="w-5 h-5" />
+                  <span>Find Courses</span>
+                </div>
+              </Link>
+
               {!currentRound && (
                 <button
                   onClick={() => {
@@ -108,7 +128,7 @@ function App() {
           </div>
         </nav>
 
-        <main className="flex-1">
+        <main className="flex-1 pt-16">
           <Routes>
             <Route
               path="/"
@@ -125,6 +145,7 @@ function App() {
               }
             />
             <Route path="/history" element={<RoundHistory />} />
+            <Route path="/courses" element={<CourseSearch />} />
           </Routes>
         </main>
       </div>

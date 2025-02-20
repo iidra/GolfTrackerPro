@@ -1,0 +1,4 @@
+1. Make every page responsive
+2. Don't remove code that isn't related to features you're currently working on
+3. Use react components where possible
+4. don't make big components. Split up the logic if possible
